@@ -3,10 +3,24 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Wbpack Exercise</title>
+    <script src="https://kit.fontawesome.com/a12691952c.js" crossorigin="anonymous"></script>
+    <title>To Do List</title>
 </head>
 <body>
-    <h1>Hello webpack  !</h1>
-    
+    <div class="back">
+        <div id="container" class="container">
+            <div class="head">
+                <p>Today's To Do</p>
+                <i class="fa-solid fa-rotate"></i>
+            </div>
+            <form>
+                <input type="text" placeholder="Add to your list...">
+                <button type="submit"><i class="fa-solid fa-paper-plane"></i></button>
+            </form>
+            <div id="list" class="list">
+            </div>
+            <button class="clear">Clear all completed</button>
+        </div>
+    </div>
 </body>
 </html>
