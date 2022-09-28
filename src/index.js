@@ -1,6 +1,6 @@
 import './index.css';
 
-const mainArr = JSON.parse(localStorage.getItem('array')) || [];
+let mainArr = JSON.parse(localStorage.getItem('array')) || [];
 
 function storage() {
   localStorage.setItem('array', JSON.stringify(mainArr));
@@ -41,9 +41,12 @@ function addHtml() {
     button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
     div.appendChild(button);
     button.addEventListener('click', () => {
-      mainArr.splice(i, 1);
-      storage();
-      addHtml();
+      button.innerHTML = '<i class="fa-solid fa-trash"></i>';
+      setTimeout(() => {
+        mainArr.splice(i, 1);
+        storage();
+        addHtml();
+      }, 150);
     });
     form.addEventListener('input', () => {
       mainArr[i].description = input.value;
@@ -72,3 +75,10 @@ buttonAdd.addEventListener('click', () => {
 });
 
 addHtml();
+
+const refresh = document.getElementById('refresh');
+refresh.addEventListener('click', () => {
+  mainArr = [];
+  storage();
+  addHtml();
+});
