@@ -1,6 +1,6 @@
 import storage, { mainArr } from './storage.js';
 
-function addHtml() {
+const addHtml = () => {
   const list = document.getElementById('list');
   let index = 0;
   list.innerHTML = '';
@@ -48,6 +48,6 @@ function addHtml() {
     });
   }
   document.getElementById('add-input').value = '';
-}
+};
 
 export default addHtml;

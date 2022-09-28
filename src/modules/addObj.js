@@ -1,7 +1,7 @@
 import storage, { mainArr } from './storage.js';
 import addHtml from './addHtml.js';
 
-function addObj(value) {
+const addObj = (value) => {
   let object = {};
   object = {
     description: value,
@@ -11,6 +11,6 @@ function addObj(value) {
   mainArr.push(object);
   storage();
   addHtml();
-}
+};
 
 export default addObj;
