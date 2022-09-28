@@ -1,4 +1,5 @@
-import storage, { mainArr } from './storage.js';
+import storage from './storage.js';
+import mainArr from './const.js';
 import addHtml from './addHtml.js';
 
 const addObj = (value) => {
@@ -11,7 +12,6 @@ const addObj = (value) => {
   mainArr.push(object);
   storage();
   addHtml();
-  window.location.reload();
 };
 
 export default addObj;

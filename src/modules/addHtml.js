@@ -1,4 +1,6 @@
-import storage, { mainArr } from './storage.js';
+import storage from './storage.js';
+import mainArr from './const.js';
+import checkFunction from './check.js';
 
 const addHtml = () => {
   const list = document.getElementById('list');
@@ -22,8 +24,12 @@ const addHtml = () => {
     list.appendChild(div);
     const form = document.createElement('form');
     form.className = 'formList';
-    form.innerHTML = `<input type="checkbox" class="checkbox" ${arrMain[index].completed ? 'checked' : ''}>`;
     div.appendChild(form);
+    const checkbox = document.createElement('input');
+    checkbox.className = 'checkbox';
+    checkbox.type = 'checkbox';
+    checkbox.checked = arrMain[index].completed ? 'checked' : '';
+    form.appendChild(checkbox);
     const input = document.createElement('input');
     input.className = 'itemText';
     input.value = `${arrMain[index].description}`;
@@ -40,12 +46,15 @@ const addHtml = () => {
         mainArr.splice(i, 1);
         storage();
         addHtml();
-        window.location.reload();
       }, 150);
     });
     form.addEventListener('input', () => {
       mainArr[i].description = input.value;
       storage();
+    });
+    checkbox.addEventListener('click', () => {
+      checkFunction(i);
+      addHtml();
     });
   }
   document.getElementById('add-input').value = '';

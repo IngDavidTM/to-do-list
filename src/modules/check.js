@@ -1,4 +1,5 @@
-import storage, { mainArr } from './storage.js';
+import storage from './storage.js';
+import mainArr from './const.js';
 
 const checkFunction = (index) => {
   if (mainArr[index].completed === false) {
