@@ -1,44 +1,75 @@
 import './index.css';
 
-const mainArr = [
-  {
-    description: 'description 1',
-    completed: true,
-    index: 1,
-  },
-  {
-    description: 'description 2',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'description 3',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'description 4',
-    completed: true,
-    index: 4,
-  },
-];
+const mainArr = JSON.parse(localStorage.getItem('array')) || [];
 
-const list = document.getElementById('list');
-let index = 0;
-for (let i = 0; i < mainArr.length; i += 1) {
-  for (let j = 0; j < mainArr.length; j += 1) {
-    if (mainArr[j].index === i + 1) {
-      index = j;
-      break;
-    }
-  }
-  const div = document.createElement('div');
-  div.id = 'item';
-  div.className = 'item';
-  div.innerHTML = `<div id="item" class="item">
-  <input type="checkbox" class="checkbox" ${mainArr[index].completed ? 'checked' : ''}>
-  <input type="text" class="itemText" value="${mainArr[index].description}">
-  <button><i class="fa-solid fa-ellipsis-vertical"></i></button>
-  </div>`;
-  list.appendChild(div);
+function storage() {
+  localStorage.setItem('array', JSON.stringify(mainArr));
 }
+
+function addHtml() {
+  const list = document.getElementById('list');
+  let index = 0;
+  list.innerHTML = '';
+  for (let i = 0; i < mainArr.length; i += 1) {
+    mainArr[i].index = i + 1;
+    storage();
+  }
+  const arrMain = JSON.parse(localStorage.getItem('array'));
+  for (let i = 0; i < arrMain.length; i += 1) {
+    for (let j = 0; j < arrMain.length; j += 1) {
+      if (arrMain[j].index === i + 1) {
+        index = j;
+        break;
+      }
+    }
+    const div = document.createElement('div');
+    div.id = 'item';
+    div.className = 'item';
+    list.appendChild(div);
+    const form = document.createElement('form');
+    form.className = 'formList';
+    form.innerHTML = `<input type="checkbox" class="checkbox" ${arrMain[index].completed ? 'checked' : ''}>`;
+    div.appendChild(form);
+    const input = document.createElement('input');
+    input.className = 'itemText';
+    input.value = `${arrMain[index].description}`;
+    input.type = 'text';
+    input.id = 'itemText';
+    form.appendChild(input);
+    const button = document.createElement('button');
+    button.className = 'button-remove';
+    button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+    div.appendChild(button);
+    button.addEventListener('click', () => {
+      mainArr.splice(i, 1);
+      storage();
+      addHtml();
+    });
+    form.addEventListener('input', () => {
+      mainArr[i].description = input.value;
+      storage();
+    });
+  }
+  document.getElementById('add-input').value = '';
+}
+
+function addObj(value) {
+  let object = {};
+  object = {
+    description: value,
+    completed: false,
+    index: 0,
+  };
+  mainArr.push(object);
+  storage();
+  addHtml();
+}
+
+const buttonAdd = document.getElementById('add-button');
+buttonAdd.addEventListener('click', () => {
+  const inputAdd = document.getElementById('add-input').value;
+  addObj(inputAdd);
+});
+
+addHtml();
+

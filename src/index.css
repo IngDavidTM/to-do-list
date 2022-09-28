@@ -48,7 +48,7 @@ form {
   border-bottom: 1px solid #ccc;
 }
 
-form input {
+#add-input {
   flex: 1;
   border: none;
   padding: 20px;
@@ -75,6 +75,13 @@ form button {
   display: flex;
   flex-direction: column;
   justify-content: center;
+}
+
+.formList {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  border: none;
 }
 
 .item {
