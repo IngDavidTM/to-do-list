@@ -29,7 +29,7 @@ $git clone git@github.com:IngDavidTM/to-do-list.git
 ```
 
 ### Live GitHub Page
-- Not available
+- https://ingdavidtm.github.io/to-do-list/dist/
 
 ## Authors
 
