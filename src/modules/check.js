@@ -9,4 +9,11 @@ const checkFunction = (index) => {
   storage();
 };
 
+const clearFunction = () => {
+  const arrMain = mainArr.filter((obj) => obj.completed === false);
+  localStorage.setItem('array', JSON.stringify(arrMain));
+  window.location.reload();
+};
+
 export default checkFunction;
+export { clearFunction };

@@ -40,6 +40,7 @@ const addHtml = () => {
         mainArr.splice(i, 1);
         storage();
         addHtml();
+        window.location.reload();
       }, 150);
     });
     form.addEventListener('input', () => {
