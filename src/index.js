@@ -1,6 +1,6 @@
 import './index.css';
 
-let mainArr = JSON.parse(localStorage.getItem('array')) || [];
+const mainArr = JSON.parse(localStorage.getItem('array')) || [];
 
 function storage() {
   localStorage.setItem('array', JSON.stringify(mainArr));
@@ -78,7 +78,7 @@ addHtml();
 
 const refresh = document.getElementById('refresh');
 refresh.addEventListener('click', () => {
-  mainArr = [];
+  mainArr.splice(0, mainArr.length);
   storage();
   addHtml();
 });
