@@ -11,6 +11,7 @@ const addObj = (value) => {
   mainArr.push(object);
   storage();
   addHtml();
+  window.location.reload();
 };
 
 export default addObj;
