@@ -1,3 +1,3 @@
-let mainArr = JSON.parse(localStorage.getItem('array')) || [];
+const mainArr = JSON.parse(localStorage.getItem('array')) || [];
 
 export default mainArr;
