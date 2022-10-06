@@ -24,3 +24,18 @@ describe('add method', () => {
     }]);
   });
 });
+describe('remove method', () => {
+  test('should remove a item from the list', () => {
+    const removeBtn = document.querySelectorAll('.button-remove');
+    removeBtn[0].click();
+    const list = document.querySelectorAll('.itemText');
+    expect(list.length).toEqual(1);
+  });
+  test('should change the value of mainArr', () => {
+    expect(mainArr).toEqual([{
+      description: 'hello Microverse',
+      completed: false,
+      index: 1,
+    }]);
+  });
+});
