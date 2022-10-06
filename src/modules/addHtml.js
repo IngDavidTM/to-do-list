@@ -42,13 +42,11 @@ const addHtml = () => {
     div.appendChild(button);
     button.addEventListener('click', () => {
       button.innerHTML = '<i class="fa-solid fa-trash"></i>';
-      setTimeout(() => {
-        mainArr.splice(i, 1);
-        storage();
-        addHtml();
-      }, 150);
+      mainArr.splice(i, 1);
+      storage();
+      addHtml();
     });
-    form.addEventListener('input', () => {
+    input.addEventListener('input', () => {
       mainArr[i].description = input.value;
       storage();
     });
