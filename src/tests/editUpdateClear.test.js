@@ -6,7 +6,7 @@ document.body.innerHTML = `<form><input type="text" id="add-input" placeholder="
 <div id="list" class="list"></div>`;
 
 describe('edit method', () => {
-  test('should update the List', () => {
+  test('should edit the List', () => {
     addObj('hello planet');
     const input = document.querySelector('.itemText');
     input.value = 'hello Benjamin';
@@ -25,7 +25,7 @@ describe('edit method', () => {
   });
 });
 describe('update status', () => {
-  test('should update the mainArr', () => {
+  test('should edit the mainArr', () => {
     addObj('cheers');
     const checkbox = document.querySelectorAll('.checkbox');
     checkbox[0].click();
