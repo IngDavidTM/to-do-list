@@ -39,6 +39,12 @@ $git clone git@github.com:IngDavidTM/to-do-list.git
 - Twitter: [@David5TM](https://twitter.com/David5TM)
 - LinkedIn: [LinkedIn](https://www.linkedin.com/in/ing-david-tamayo)
 
+👤 **Kelvin Benjamin**
+
+- GitHub: [@Kelvin-Ben](https://github.com/Kelvin-Ben)
+- Twitter: [@Kevoyout144](https://twitter.com/kevoyout144)
+- Linkedin [Kelvin-ben](https://www.linkedin.com/in/kelvin-ben-323043173/)
+
 ## 🤝 Contributing
 
 Contributions, issues, and feature requests are welcome!
