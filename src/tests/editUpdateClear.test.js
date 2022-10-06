@@ -1,5 +1,6 @@
 import addObj from '../modules/addObj.js';
 import mainArr from '../modules/const.js';
+import { clearFunction } from '../modules/check.js';
 
 document.body.innerHTML = `<form><input type="text" id="add-input" placeholder="Add to your list...">
 <button type="button" id="add-button"><i class="fa-solid fa-paper-plane"></i></button></form>
