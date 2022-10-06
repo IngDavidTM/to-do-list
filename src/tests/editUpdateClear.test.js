@@ -45,3 +45,11 @@ describe('update status', () => {
     expect(checkbox[0].checked).toEqual(true);
   });
 });
+describe('clear selected', () => {
+  test('should clear the selected on localStorage', () => {
+    delete window.location;
+    window.location = { reload: jest.fn() };
+    clearFunction();
+    expect(JSON.parse(localStorage.getItem('array'))).toEqual([]);
+  });
+});
