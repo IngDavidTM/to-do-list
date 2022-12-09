@@ -11,7 +11,7 @@ const checkFunction = (index) => {
 };
 
 const clearFunction = () => {
-  const arrMain = mainArr.filter((obj) => obj.completed === false);
+  const arrMain = mainArr.filter((obj) => !obj.completed);
   localStorage.setItem('array', JSON.stringify(arrMain));
   window.location.reload();
 };
