@@ -35,13 +35,14 @@ const addHtml = () => {
     input.value = `${arrMain[index].description}`;
     input.type = 'text';
     input.id = 'itemText';
+    input.style.textDecoration = arrMain[index].completed ? 'line-through' : '';
+    input.style.color = arrMain[index].completed ? 'gray' : '';
     form.appendChild(input);
     const button = document.createElement('button');
     button.className = 'button-remove';
-    button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+    button.innerHTML = '<i class="fa-solid fa-trash"></i>';
     div.appendChild(button);
     button.addEventListener('click', () => {
-      button.innerHTML = '<i class="fa-solid fa-trash"></i>';
       mainArr.splice(i, 1);
       storage();
       addHtml();
@@ -49,6 +50,12 @@ const addHtml = () => {
     input.addEventListener('input', () => {
       mainArr[i].description = input.value;
       storage();
+    });
+    input.addEventListener('focus', () => {
+      button.innerHTML = '<i class="fa-solid fa-ellipsis-vertical"></i>';
+    });
+    input.addEventListener('focusout', () => {
+      button.innerHTML = '<i class="fa-solid fa-trash"></i>';
     });
     checkbox.addEventListener('click', () => {
       checkFunction(i);
