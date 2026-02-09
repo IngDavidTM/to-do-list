@@ -134,6 +134,12 @@ form button {
   color: #707070;
 }
 
+.item.dragging {
+  opacity: 0.5;
+  background-color: #f9f9f9;
+  border: 2px dashed #ccc;
+}
+
 .clear {
   width: 100%;
   font-size: 16px;

@@ -21,6 +21,55 @@ const addHtml = () => {
     const div = document.createElement('div');
     div.id = 'item';
     div.className = 'item';
+
+    // Drag and Drop Logic
+    div.draggable = true;
+    div.addEventListener('dragstart', () => {
+      div.classList.add('dragging');
+    });
+
+    div.addEventListener('dragend', () => {
+      div.classList.remove('dragging');
+    });
+
+    div.addEventListener('dragover', (e) => {
+      e.preventDefault();
+      const afterElement = getDragAfterElement(list, e.clientY);
+      const dragging = document.querySelector('.dragging');
+      if (afterElement == null) {
+        list.appendChild(dragging);
+      } else {
+        list.insertBefore(dragging, afterElement);
+      }
+    });
+
+    div.addEventListener('drop', () => {
+      // Reordering logic
+      const newOrder = [...list.querySelectorAll('.item')];
+      const newMainArr = [];
+      newOrder.forEach((item, index) => {
+        const form = item.querySelector('.formList');
+        const input = form.querySelector('.itemText');
+        const checkbox = form.querySelector('.checkbox');
+
+        // Find the original object in mainArr or recreate it based on DOM
+        // Better to find based on content if possible, or just rebuild since we have all data in DOM
+        const obj = {
+          description: input.value,
+          completed: checkbox.checked,
+          index: index + 1
+        };
+        newMainArr.push(obj);
+      });
+
+      // Update mainArr
+      mainArr.splice(0, mainArr.length, ...newMainArr);
+      storage();
+      // We don't call addHtml() here to avoid breaking the drag end animation, 
+      // but the data is saved. Next refresh will show correct order.
+      // Actually, calling addHtml() might be jarring. 
+    });
+
     list.appendChild(div);
     const form = document.createElement('form');
     form.className = 'formList';
@@ -66,3 +115,16 @@ const addHtml = () => {
 };
 
 export default addHtml;
+const getDragAfterElement = (container, y) => {
+  const draggableElements = [...container.querySelectorAll('.item:not(.dragging)')];
+
+  return draggableElements.reduce((closest, child) => {
+    const box = child.getBoundingClientRect();
+    const offset = y - box.top - box.height / 2;
+    if (offset < 0 && offset > closest.offset) {
+      return { offset: offset, element: child };
+    } else {
+      return closest;
+    }
+  }, { offset: Number.NEGATIVE_INFINITY }).element;
+};
